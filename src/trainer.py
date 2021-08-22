@@ -917,7 +917,12 @@ class Trainer(object):
         x, lengths, positions, langs, \
             image_langs, img_boxes, img_feats, img_labels, _ = \
             self.generate_batch_vpara(lang1, lang2, 'pred_object')
-
+        
+        logger.info("x {}".format(x))
+                    
+        logger.info("i_l {}".format(image_langs))
+        logger.info("i_lab {}".format(img_labels))
+        
         x, lengths, positions, langs, _ = self.round_batch(
             x, lengths, positions, langs)
 
@@ -949,7 +954,9 @@ class Trainer(object):
 
         # bring batch dimension to 0-dim
         img_tensor = img_tensor.permute(1, 0, 2)
-
+        logger.info("before input to model")
+        logger.info("set_ten {}".format(sent_tensor))
+        logger.info("img_ten {}".format(img_tensor))
         text_scores, text_loss = model(
             'predict', tensor=sent_tensor, pred_mask=txt_pred_mask,
             y=y, get_scores=True)
