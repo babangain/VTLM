@@ -341,6 +341,9 @@ def main(params):
             for lang1, lang2 in shuf_order(params.mlm_steps, params):
                 if params.only_vlm:
                     # with visual features
+                    logger.info("In VLM step of finetuning on CC")
+                    logger.info("lang 1 is {}".format(lang1)
+                    logger.info("lang 2 is {}".format(lang2)
                     trainer.vlm_step(lang1, lang2, params.lambda_mlm, _iter)
                 else:
                     trainer.mlm_step(lang1, lang2, params.lambda_mlm, _iter)
