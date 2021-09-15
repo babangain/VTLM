@@ -35,7 +35,7 @@ for lg in en de; do
     if [ -f ${file}.gz ]; then
       zcat "${file}.gz" | $REPLACE_UNICODE_PUNCT | $NORM_PUNC -l $lg | \
         $REM_NON_PRINT_CHAR | $TOKENIZER -no-escape -threads 2 -l $lg | $LOWER_REMOVE_ACCENT | \
-        fastbpe applybpe_stream bpe/bpe50k.codes bpe/bpe50k.vocab > ${DATA_PATH}/${osplit}.de-en.${lg} &
+        ./fast applybpe_stream bpe/bpe50k.codes bpe/bpe50k.vocab > ${DATA_PATH}/${osplit}.de-en.${lg} &
     fi
   done
 done
