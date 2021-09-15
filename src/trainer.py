@@ -912,7 +912,8 @@ class Trainer(object):
         name = 'model' if params.encoder_only else 'encoder'
         model = getattr(self, name)
         model.train()
-
+        logger.info("lang1 {}".format(lang1))
+        logger.info("lang2 {}".format(lang2))
         # generate batch / select words to predict
         x, lengths, positions, langs, \
             image_langs, img_boxes, img_feats, img_labels, _ = \
